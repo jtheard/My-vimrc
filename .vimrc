@@ -13,13 +13,14 @@ Plugin 'gmarik/vundle'
 "--------------------------------------------------------------------------------
 " Plugins
 "================================================================================
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
+Plugin 'ervandew/supertab'
 
 " Color Plugins
 Plugin 'vilight.vim'
@@ -43,14 +44,17 @@ set laststatus=2
 
 
 " Syntastic Options
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" NERD Tree map toggle to F2
+nmap <silent> <special> <F2> :NERDTreeToggle<RETURN>
 
 
 "--------------------------------------------------------------------------------
@@ -68,8 +72,7 @@ set ignorecase          " Ignore case when searching
 set smartcase           " If search keyword has capital letters case-sensitive
 set hlsearch            " Highlight search results
 set incsearch           " Jump to search result as it is typed
-set showcmd             " Display incomplete comand in lower right corner
-set wildmenu            " Wild menu
+set showcmd             " display incomplete comand in lower right corner
 set backspace=2         " Working backspace
 set scrolloff=10        " Keep at least 5 lines around cursor
 
@@ -84,15 +87,15 @@ nnoremap ; :
 nmap <silent> ,/ :nohlsearch<CR>
 
 " Tab Settings
-set autoindent     " Set the cursor as same indent line as above
-set smartindent    " Try to be smart about indenting (C-style)
-set expandtab      " Expand tabs to spaces
-set shiftwidth=4   " Amount of spaces for each step of (auto)indent
-set softtabstop=4  " Set virtual tab stop
-set tabstop=8      " For proper display of files with tabs
-set shiftround     " Always round indents to multiple of shiftwidth
-set copyindent     " Use existing indents for new indents
-set preserveindent " Save as much indent structure as possible
+set autoindent     "set the cursor as same indent line as above
+set smartindent    "try to be smart about indenting (C-style)
+set expandtab      "expand tabs to spaces
+set shiftwidth=4   "amount of spaces for each step of (auto)indent
+set softtabstop=4  "set virtual tab stop
+set tabstop=8      "for proper display of files with tabs
+set shiftround     "always round indents to multiple of shiftwidth
+set copyindent     "use existing indents for new indents
+set preserveindent "save as much indent structure as possible
 
 " Disable Auto Comment
 au FileType * setlocal formatoptions-=cro
@@ -111,6 +114,6 @@ if (exists('+colorcolumn'))
 endif
 
 " Backup
-set backup                   " Enable backup files
-set backupdir=~/.vim/backup  " Set directory for backup files
-set directory=~/.vim/tmp     " Set directory for temp swp files
+set backup                   "Enable backup files
+set backupdir=~/.vim/backup  "Set directory for backup files
+set directory=~/.vim/tmp     "Set directory for temp swp files
