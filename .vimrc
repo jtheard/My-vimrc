@@ -20,7 +20,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
-Plugin 'ervandew/supertab'
 
 " Color Plugins
 Plugin 'vilight.vim'
@@ -42,6 +41,8 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme="simple"
 set laststatus=2
 
+" YouCompleteMe Options 
+nmap <silent> <special> <F3> :YcmCompleter GoTo<CR>
 
 " Syntastic Options
 set statusline+=%#warningmsg#
@@ -74,14 +75,13 @@ set hlsearch            " Highlight search results
 set incsearch           " Jump to search result as it is typed
 set showcmd             " display incomplete comand in lower right corner
 set backspace=2         " Working backspace
-set scrolloff=10        " Keep at least 5 lines around cursor
+set scrolloff=10        " Keep at least 10 lines around cursor
+set foldmethod=marker   " Fold Stuff
 
 " Map the next and previous buffer commands
-noremap <S-Tab> :bn<cr> 
-noremap <C-S-Tab> :bp<cr>
-
-" Remap the ; to : in normal mode for easier commands
-nnoremap ; :
+nnoremap <S-Tab> :bn<CR> 
+nnoremap ;j :bn<CR> 
+nnoremap ;k :bp<CR> 
 
 " Clear Search
 nmap <silent> ,/ :nohlsearch<CR>

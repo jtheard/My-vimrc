@@ -10,5 +10,5 @@ set columns=104
 "                   \| let &columns = &numberwidth + 100
 
 set guioptions+=b   "enable bottom scrollbar
-"set guioptions-=m  "remove menu bar
-"set guioptions-=T  "remove toolbar
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
