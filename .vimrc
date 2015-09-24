@@ -14,7 +14,7 @@ Plugin 'gmarik/vundle'
 " Plugins
 "================================================================================
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
@@ -23,6 +23,7 @@ Plugin 'godlygeek/tabular'
 
 " Color Plugins
 Plugin 'vilight.vim'
+
 
 "--------------------------------------------------------------------------------
 " Vundle End
@@ -39,24 +40,24 @@ filetype plugin indent on
 " Airline Options
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme="simple"
+
 set laststatus=2
 
 " YouCompleteMe Options 
 nmap <silent> <special> <F3> :YcmCompleter GoTo<CR>
 
 " Syntastic Options
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-" NERD Tree map toggle to F2
+" NERD Tree options -map toggle to F2
 nmap <silent> <special> <F2> :NERDTreeToggle<RETURN>
-
 
 "--------------------------------------------------------------------------------
 " General Options
@@ -77,11 +78,18 @@ set showcmd             " display incomplete comand in lower right corner
 set backspace=2         " Working backspace
 set scrolloff=10        " Keep at least 10 lines around cursor
 set foldmethod=marker   " Fold Stuff
+"set autochdir
+
+" map ,cd to change to directory of file
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Map the next and previous buffer commands
 nnoremap <S-Tab> :bn<CR> 
-nnoremap ;j :bn<CR> 
-nnoremap ;k :bp<CR> 
+nnoremap <A-k> :bn<CR> 
+nnoremap <A-j> :bp<CR> 
+
+" Map ; to : for easier commands
+nnoremap ; :
 
 " Clear Search
 nmap <silent> ,/ :nohlsearch<CR>
@@ -117,3 +125,36 @@ endif
 set backup                   "Enable backup files
 set backupdir=~/.vim/backup  "Set directory for backup files
 set directory=~/.vim/tmp     "Set directory for temp swp files
+
+" Replace all occurances of word under cursor
+fu! FindReplace()
+    let search = expand("<cword>")
+    echo "Replacing " . search
+    call inputsave()
+    let replace = input('Replace with: ')
+    call inputrestore()
+    let cmd = "%s/\\<" . search . "\\>/" . replace . "/g"
+    echo cmd
+    exe cmd
+endf
+
+fu! FindReplaceWind()
+    let search = expand("<cword>")
+    echo "Replacing " . search
+    call inputsave()
+    let replace = input('Replace with: ')
+    call inputrestore()
+    let cmd = "windo %s/\\<" . search . "\\>/" . replace . "/ge"
+    echo cmd
+    exe cmd
+endf
+
+nnoremap <special> <F4> :call FindReplaceWind()<CR>
+
+fu! TempSearch()
+    let search = expand("<cword>")
+    let cmd = "vimgrep /" . search . "/j fa_winds.c"
+    exe cmd
+endf
+
+nnoremap <special> <F5> :call TempSearch()<CR>
