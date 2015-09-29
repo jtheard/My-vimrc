@@ -97,7 +97,7 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Tab Settings
 set autoindent     "set the cursor as same indent line as above
 set smartindent    "try to be smart about indenting (C-style)
-set expandtab      "expand tabs to spaces
+"set expandtab      "expand tabs to spaces
 set shiftwidth=4   "amount of spaces for each step of (auto)indent
 set softtabstop=4  "set virtual tab stop
 set tabstop=8      "for proper display of files with tabs
