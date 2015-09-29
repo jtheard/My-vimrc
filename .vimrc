@@ -97,13 +97,20 @@ nmap <silent> ,/ :nohlsearch<CR>
 " Tab Settings
 set autoindent     "set the cursor as same indent line as above
 set smartindent    "try to be smart about indenting (C-style)
-"set expandtab      "expand tabs to spaces
+"set noexpandtab    "does not expand tabs to spaces
+set expandtab	   "expand tabs to spaces
 set shiftwidth=4   "amount of spaces for each step of (auto)indent
 set softtabstop=4  "set virtual tab stop
-set tabstop=8      "for proper display of files with tabs
+set tabstop=4      "for proper display of files with tabs
 set shiftround     "always round indents to multiple of shiftwidth
 set copyindent     "use existing indents for new indents
 set preserveindent "save as much indent structure as possible
+fu! SetTab(width)
+	let &shiftwidth = a:width
+	let &softtabstop = a:width
+	let &tabstop = a:width
+endf
+
 
 " Disable Auto Comment
 au FileType * setlocal formatoptions-=cro
